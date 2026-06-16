@@ -5,18 +5,26 @@ This repository is organized as a unified, production-grade cloud-native monorep
 
 golang • microservices • event-driven • rabbitmq • kubernetes • helm • terraform • aws-eks • grpc • postgresql • redis
 
-# Repo
+## 📁 Repository Directory Structure
 
-shortcut-engine/        # <-- Single Git Repository Root
-├── .github/workflows/    # 1. CI/CD AUTOMATION (GitHub Actions pipeline)
-├── api/protobuf/         # 2. CONTRACTS (Shared gRPC definitions)
-├── deploy/               # 3. PLATFORM & DEVOPS LAYER
-│   ├── terraform/        #    - Infrastructure as Code (VPC, EKS, RDS, RabbitMQ)
-│   └── helm/             #    - Configuration as Code (Kubernetes Orchestration)
-└── services/             # 4. APPLICATION LAYER
-    ├── url-core-svc/     #    - Go microservice (REST API & Redirects)
-    ├── analytics-engine/ #    - Go microservice (gRPC Server & Redis Caching)
-    └── audit-log-worker/ #    - Go microservice (RabbitMQ Consumer & JSONB writer)
+The platform is organized as a unified, single-repository monorepo. This structure consolidates application logic, data contracts, infrastructure declarations, and deployment orchestrations under a single version control tree.
+
+```text
+shortcut-engine/            # <-- Single Git Repository Root
+├── .github/
+│   └── workflows/          # 1. CI/CD AUTOMATION (GitHub Actions Pipeline)
+│
+├── api/
+│   └── protobuf/           # 2. CONTRACTS (Shared gRPC Definitions & Schemas)
+│
+├── deploy/                 # 3. PLATFORM & DEVOPS LAYER
+│   ├── terraform/          #    - Infrastructure as Code (AWS VPC, EKS, RDS, RabbitMQ)
+│   └── helm/               #    - Configuration as Code (Kubernetes Umbrella Charts)
+│
+└── services/               # 4. APPLICATION LAYER
+    ├── url-core-svc/       #    - Go Microservice (Public REST API & Redirects Engine)
+    ├── analytics-engine/   #    - Go Microservice (Internal gRPC Server & Redis Caching)
+    └── audit-log-worker/   #    - Go Microservice (Async RabbitMQ Consumer & JSONB Writer)
 
 ---
 
